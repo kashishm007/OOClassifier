@@ -1,0 +1,98 @@
+# --------------------------------------------
+#   Name: Kashish Mittal
+#   ID: 1638174
+#   CMPUT 274, Fall 2020
+#
+#   Assignment 1: OO Classifier
+# --------------------------------------------
+Included Files:
+			*ooclasifier.py
+			*README
+
+Accessories:None
+
+Wiring Instructions:None
+
+Notes and Assumption:
+    The following functions were added to ooclasifier.py:
+        get_wordcount:       This function uses a word list and then
+                             it creates a dictionary of words as keys and
+                             their respective counts as values. It then sorts
+                             the dictionary based on the values in descending
+                             order and stores it in a list of list in which first
+                             element is the word and second element is the value.
+                             I got this sorting algorithm from stackoverflow whose link is
+                             :https://stackoverflow.com/questions/613183/how-do-i-sort-a-dictionary-by-value
+                             and then set the reverse = True to get the descending order.
+                             
+
+        remove_punc_symbols: This function is used to remove all the
+                             punctuations and symbols from words in the
+                             list
+
+        remove_digits:       This function is used to remove all the digits
+                             from the words except from when the word only
+                             consists digits
+
+        remove_stopword:     This function is used to remove all the stop
+                             words form the list of words
+
+        preprocess:          This function is used to remove punctuation and
+                             symbols, digits and stopwords based on the value of
+                             mode passed as a parameter
+
+        keep_digits:         This functions is used to remove all the symbols
+                             and punctuation and also remover all the stopwords
+
+        keep_symbols:        This functions is used to remove the digits and remove
+                             all the stopwords
+
+        keep_stops:          This functions is used to remove the digits and remove
+                             all the symbols and punctuation
+
+        removeall:           This function is used to remove punctuation and
+                             symbols, digits and stopwords when no value is passed
+                             as command line arguments
+
+    The following method was added to Class TrainingInstance:
+        preprocess_words:    This method is used process words based on the value
+                             of mode which is passed as parameter. It first converts
+                             the words of instance to lower case then processes those
+                             by calling the required function
+
+    The following methods were added to class TrainingSet:
+        preprocess:          This is method calls the preprocess_words and perform
+                             all the preprocessing actions for all training instances
+                             in a particular dataset
+
+        return_nfolds:       This method is used to divide the dataset into nfolds. First
+                             we create an empty list. We then run a loop from 0 to num
+                             and append a deepcopy of the object of class TrainingSet to
+                             empty list. We then clear all the values of each elements of
+                             the list then we then use another loop nested in the previous
+                             loop with num value jumps and append the value retruned by
+                             the get_instances and get_lines to inObjHash and inObjList
+                             respectively.
+
+        copy:                This method is used to return a deepcopy of the object which
+                             calls it
+
+        add_folds:           This method is used to add the training instances of tset
+                             to an object of class TrainingSet. We first create a deepcopy
+                             of a object passed as parameter then add the instances from that
+                             to the object which calls it
+
+    The Following Class was added:
+        ClassifyByTopN:     This is created as a subclass of ClassifyByTarget, so that it
+                            supports all the methods of the parent class
+
+    The following function was added to Class ClassifyByTopN:
+        target_top_n:       This function is used to get target words based on their
+                            counts. We first check if the label of the word matches with
+                            label passed as the string if it matches then we appemd in the
+                            word list. We then use the function get_frequency to get the list
+                            of sorted word count pairs. If there is a tie at num'th position we add
+                            all the elements with the same count as the numth element. We then set the
+                            target based on the highest count words.
+
+
